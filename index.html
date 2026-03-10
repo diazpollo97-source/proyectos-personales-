@@ -3,74 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <title>Carta para ti 💌</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-
+*{box-sizing:border-box}
 body{
-background: linear-gradient(#ff9ecf,#ffcce6);
-font-family: Arial;
-text-align:center;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#ff9ecf,#ffc6e6,#ffe6f5);
+  overflow:hidden;
 }
 
-.sobre{
-background:white;
-padding:40px;
-border-radius:15px;
-box-shadow:0 10px 20px rgba(0,0,0,0.2);
-cursor:pointer;
-width:300px;
+/* CONTENEDOR */
+.container{
+  position:relative;
+  width:320px;
+  height:220px;
+  perspective:1000px;
 }
 
-.carta{
-display:none;
+/* SOBRE */
+.envelope{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#ff4d88;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 15px 35px rgba(0,0,0,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:22px;
 }
 
-h1{
-color:#ff2e7a;
+/* TAPA DEL SOBRE */
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:50%;
+  background:#ff2e7a;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:transform 1s;
 }
 
+/* CARTA */
+.letter{
+  position:absolute;
+  top:20px;
+  left:10px;
+  width:300px;
+  height:380px;
+  background:white;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  transform:translateY(120px);
+  opacity:0;
+  transition:1s;
+}
+
+.letter h1{
+  color:#ff2e7a;
+}
+
+/* FOTO */
+.letter img{
+  width:180px;
+  border-radius:10px;
+  margin-top:10px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ABIERTO */
+.open .flap{
+  transform:rotateX(180deg);
+}
+
+.open .letter{
+  transform:translateY(-140px);
+  opacity:1;
+}
+
+/* CORAZONES */
+.heart{
+  position:fixed;
+  top:-20px;
+  font-size:22px;
+  animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-20px);}
+  100%{transform:translateY(110vh);}
+}
 </style>
 </head>
 
 <body>
 
-<div class="sobre" onclick="abrirCarta()">
-<h2>💌 Tienes una carta</h2>
-<p>Haz click para abrir</p>
+<div class="container" id="container">
+
+<div class="envelope" onclick="abrir()">
+  💌 Haz click
+  <div class="flap"></div>
 </div>
 
-<div class="carta" id="carta">
-<h1>Para ti 💖</h1>
-
-<p>
-Quería escribirte esta pequeña carta para decirte que eres una persona muy especial para mí.
-</p>
-
-<p>
-Tu amistad significa mucho y me alegra mucho poder compartir momentos contigo.
-</p>
-
-<p>
-Gracias por ser tan increíble y por estar siempre.
-</p>
-
-<p>
-✨ Nunca olvides lo especial que eres ✨
-</p>
+<div class="letter">
+  <h1>Para ti 💖</h1>
+  <p id="texto"></p>
+  <img src="https://i.imgur.com/2DhmtJ4.png">
+</div>
 
 </div>
+
+<audio id="music" loop>
+<source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+</audio>
 
 <script>
+let mensaje="Quería decirte que eres una persona muy especial para mí. Tu amistad significa mucho y me alegra compartir momentos contigo. Gracias por ser tan increíble.";
+let i=0;
 
-function abrirCarta(){
-document.querySelector(".sobre").style.display="none";
-document.getElementById("carta").style.display="block";
+function abrir(){
+  document.getElementById("container").classList.add("open");
+  document.getElementById("music").play();
+  escribir();
 }
 
+function escribir(){
+  if(i < mensaje.length){
+    document.getElementById("texto").innerHTML += mensaje.charAt(i);
+    i++;
+    setTimeout(escribir,35);
+  }
+}
+
+function heart(){
+  const h=document.createElement("div");
+  h.classList.add("heart");
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+
+  setTimeout(()=>{h.remove();},6000);
+}
+
+setInterval(heart,400);
 </script>
 
 </body>
