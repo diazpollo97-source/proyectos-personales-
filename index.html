@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta para ti 💌</title>
+
+<style>
+
+body{
+background: linear-gradient(#ff9ecf,#ffcce6);
+font-family: Arial;
+text-align:center;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.sobre{
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+cursor:pointer;
+width:300px;
+}
+
+.carta{
+display:none;
+}
+
+h1{
+color:#ff2e7a;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sobre" onclick="abrirCarta()">
+<h2>💌 Tienes una carta</h2>
+<p>Haz click para abrir</p>
+</div>
+
+<div class="carta" id="carta">
+<h1>Para ti 💖</h1>
+
+<p>
+Quería escribirte esta pequeña carta para decirte que eres una persona muy especial para mí.
+</p>
+
+<p>
+Tu amistad significa mucho y me alegra mucho poder compartir momentos contigo.
+</p>
+
+<p>
+Gracias por ser tan increíble y por estar siempre.
+</p>
+
+<p>
+✨ Nunca olvides lo especial que eres ✨
+</p>
+
+</div>
+
+<script>
+
+function abrirCarta(){
+document.querySelector(".sobre").style.display="none";
+document.getElementById("carta").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
