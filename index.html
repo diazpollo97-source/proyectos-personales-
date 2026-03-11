@@ -7,6 +7,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
@@ -23,7 +24,7 @@ body{
   position:relative;
   width:320px;
   height:220px;
-  perspective:1000px;
+  perspective:1200px;
 }
 
 /* SOBRE */
@@ -34,15 +35,17 @@ body{
   background:#ff4d88;
   border-radius:10px;
   cursor:pointer;
-  box-shadow:0 15px 35px rgba(0,0,0,0.25);
+  box-shadow:0 20px 50px rgba(0,0,0,0.35);
   display:flex;
   align-items:center;
   justify-content:center;
   color:white;
   font-size:22px;
+  transform-style:preserve-3d;
+  transition:transform 1s;
 }
 
-/* TAPA DEL SOBRE */
+/* TAPA */
 .flap{
   position:absolute;
   top:0;
@@ -82,6 +85,13 @@ body{
   border-radius:10px;
   margin-top:10px;
   box-shadow:0 10px 20px rgba(0,0,0,0.2);
+  animation:flotar 3s infinite ease-in-out;
+}
+
+@keyframes flotar{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
 }
 
 /* ABIERTO */
@@ -94,12 +104,41 @@ body{
   opacity:1;
 }
 
+.open .envelope{
+  transform:rotateX(20deg) rotateY(-10deg) scale(1.05);
+}
+
 /* CORAZONES */
 .heart{
   position:fixed;
   top:-20px;
   font-size:22px;
   animation:fall 6s linear infinite;
+}
+
+/* FLORES */
+.flor{
+  position:fixed;
+  top:-20px;
+  font-size:22px;
+  animation:fall 7s linear infinite;
+}
+
+/* BRILLO */
+.brillo{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 0 10px white;
+  animation:brillar 3s linear infinite;
+}
+
+@keyframes brillar{
+  0%{opacity:0; transform:scale(0);}
+  50%{opacity:1; transform:scale(1);}
+  100%{opacity:0; transform:scale(0);}
 }
 
 @keyframes fall{
@@ -114,56 +153,80 @@ body{
 <div class="container" id="container">
 
 <div class="envelope" onclick="abrir()">
-  💌 Haz click
-  <div class="flap"></div>
+💌 Haz click
+<div class="flap"></div>
 </div>
 
 <div class="letter">
-  <h1>Para ti 💖</h1>
-  <p id="texto"></p>
-  <img src="./pollito.png">
+<h1>Para ti 💖</h1>
+<p id="texto"></p>
+<img src="./pollito.png">
 </div>
 
 </div>
 
 <audio id="music" loop>
-<source  src="in-the-sea.mp3" type="audio/mpeg">
+<source src="in-the-sea.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+
 let mensaje="Quería decirte que eres una persona muy especial para mí. Tu amistad significa mucho y me alegra compartir momentos contigo. Gracias por ser tan increíble.";
 let i=0;
 
 function abrir(){
-  document.getElementById("container").classList.add("open");
-  document.getElementById("music").play();
-  escribir();
+document.getElementById("container").classList.add("open");
+document.getElementById("music").play();
+escribir();
 }
 
 function escribir(){
-  if(i < mensaje.length){
-    document.getElementById("texto").innerHTML += mensaje.charAt(i);
-    i++;
-    setTimeout(escribir,35);
-  }
+if(i < mensaje.length){
+document.getElementById("texto").innerHTML += mensaje.charAt(i);
+i++;
+setTimeout(escribir,35);
+}
 }
 
+/* CORAZONES */
 function heart(){
-  const h=document.createElement("div");
-  h.classList.add("heart");
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  document.body.appendChild(h);
+const h=document.createElement("div");
+h.classList.add("heart");
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
 
-  setTimeout(()=>{h.remove();},6000);
+setTimeout(()=>{h.remove();},6000);
 }
-
 setInterval(heart,400);
+
+/* FLORES */
+function flor(){
+const f=document.createElement("div");
+f.classList.add("flor");
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+document.body.appendChild(f);
+
+setTimeout(()=>{f.remove();},6000);
+}
+setInterval(flor,700);
+
+/* BRILLO */
+function brillo(){
+const b=document.createElement("div");
+b.classList.add("brillo");
+b.style.left=Math.random()*100+"vw";
+b.style.top=Math.random()*100+"vh";
+document.body.appendChild(b);
+
+setTimeout(()=>{b.remove();},3000);
+}
+setInterval(brillo,200);
+
 </script>
 
 </body>
-
 </html>
-
 
 
