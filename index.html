@@ -85,13 +85,13 @@ body{
   border-radius:10px;
   margin-top:10px;
   box-shadow:0 10px 20px rgba(0,0,0,0.2);
-  animation:flotar 3s infinite ease-in-out;
+  animation:flotar 3s ease-in-out infinite;
 }
 
 @keyframes flotar{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-  100%{transform:translateY(0)}
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+  100%{transform:translateY(0);}
 }
 
 /* ABIERTO */
@@ -128,24 +128,30 @@ body{
 /* BRILLO */
 .brillo{
   position:fixed;
-  width:6px;
-  height:6px;
+  width:8px;
+  height:8px;
   background:white;
   border-radius:50%;
-  box-shadow:0 0 10px white;
-  animation:brillar 3s linear infinite;
+  box-shadow:0 0 15px white,0 0 30px white;
+  pointer-events:none;
+  animation:brillar 3s linear forwards;
 }
 
 @keyframes brillar{
-  0%{opacity:0; transform:scale(0);}
-  50%{opacity:1; transform:scale(1);}
-  100%{opacity:0; transform:scale(0);}
+  0%{
+    opacity:0;
+    transform:scale(0);
+  }
+  50%{
+    opacity:1;
+    transform:scale(1);
+  }
+  100%{
+    opacity:0;
+    transform:scale(0);
+  }
 }
 
-@keyframes fall{
-  0%{transform:translateY(-20px);}
-  100%{transform:translateY(110vh);}
-}
 </style>
 </head>
 
@@ -219,20 +225,27 @@ setInterval(flor,800);
 
 /* BRILLO */
 function brillo(){
-const b=document.createElement("div");
-b.classList.add("brillo");
-b.style.left=Math.random()*100+"vw";
-b.style.top=Math.random()*100+"vh";
-document.body.appendChild(b);
 
-setTimeout(()=>{b.remove();},3000);
+  const b=document.createElement("div");
+  b.className="brillo";
+
+  b.style.left=Math.random()*100+"vw";
+  b.style.top=Math.random()*100+"vh";
+
+  document.body.appendChild(b);
+
+  setTimeout(()=>{
+    b.remove();
+  },3000);
+
 }
-setInterval(brillo,200);
 
+setInterval(brillo,200);
 </script>
 
 </body>
 </html>
+
 
 
 
