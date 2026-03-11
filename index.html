@@ -152,6 +152,26 @@ body{
   }
 }
 
+.explosion{
+  position:fixed;
+  font-size:24px;
+  pointer-events:none;
+  animation:boom 1.5s ease-out forwards;
+}
+
+@keyframes boom{
+  0%{
+    transform:translate(0,0) scale(0);
+    opacity:1;
+  }
+
+  100%{
+    transform:translate(var(--x),var(--y)) scale(1.5);
+    opacity:0;
+  }
+}
+
+
 </style>
 </head>
 
@@ -182,9 +202,10 @@ let mensaje="Quería decirte que eres una persona muy especial para mí. Tu amis
 let i=0;
 
 function abrir(){
-document.getElementById("container").classList.add("open");
-document.getElementById("music").play();
-escribir();
+  document.getElementById("container").classList.add("open");
+  document.getElementById("music").play();
+  explosion();
+  escribir();
 }
 
 function escribir(){
@@ -223,6 +244,34 @@ function flor(){
 }
 setInterval(flor,800);
 
+/* explocion */
+function explosion(){
+
+  for(let i=0;i<25;i++){
+
+    const c=document.createElement("div");
+    c.className="explosion";
+    c.innerHTML="💖";
+
+    const x=(Math.random()-0.5)*400+"px";
+    const y=(Math.random()-0.5)*400+"px";
+
+    c.style.setProperty("--x",x);
+    c.style.setProperty("--y",y);
+
+    c.style.left="50%";
+    c.style.top="50%";
+
+    document.body.appendChild(c);
+
+    setTimeout(()=>{
+      c.remove();
+    },1500);
+
+  }
+
+}
+  
 /* BRILLO */
 function brillo(){
 
@@ -239,12 +288,14 @@ function brillo(){
   },3000);
 
 }
+  
 
 setInterval(brillo,200);
 </script>
 
 </body>
 </html>
+
 
 
 
