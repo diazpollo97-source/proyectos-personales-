@@ -119,9 +119,10 @@ body{
 /* FLORES */
 .flor{
   position:fixed;
-  top:-20px;
-  font-size:22px;
-  animation:fall 7s linear infinite;
+  top:-50px;
+  font-size:24px;
+  pointer-events:none;
+  animation:fall 6s linear forwards;
 }
 
 /* BRILLO */
@@ -202,15 +203,19 @@ setInterval(heart,400);
 
 /* FLORES */
 function flor(){
-const f=document.createElement("div");
-f.classList.add("flor");
-f.innerHTML="🌸";
-f.style.left=Math.random()*100+"vw";
-document.body.appendChild(f);
+  const f=document.createElement("div");
+  f.className="flor";
+  f.innerHTML="🌸";
 
-setTimeout(()=>{f.remove();},6000);
+  f.style.left=Math.random()*100+"vw";
+
+  document.body.appendChild(f);
+
+  setTimeout(function(){
+    f.remove();
+  },6000);
 }
-setInterval(flor,700);
+setInterval(flor,800);
 
 /* BRILLO */
 function brillo(){
@@ -228,5 +233,6 @@ setInterval(brillo,200);
 
 </body>
 </html>
+
 
 
