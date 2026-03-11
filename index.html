@@ -85,13 +85,13 @@ body{
   border-radius:10px;
   margin-top:10px;
   box-shadow:0 10px 20px rgba(0,0,0,0.2);
-  animation:flotar 3s ease-in-out infinite;
+  animation:flotar 3s infinite ease-in-out;
 }
 
 @keyframes flotar{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-12px);}
-  100%{transform:translateY(0);}
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
 }
 
 /* ABIERTO */
@@ -113,7 +113,6 @@ body{
   position:fixed;
   top:-20px;
   font-size:22px;
-  z-index:10;
   animation:fall 6s linear infinite;
 }
 
@@ -122,46 +121,30 @@ body{
   position:fixed;
   top:-20px;
   font-size:22px;
-  z-index:10;
   animation:fall 7s linear infinite;
 }
 
 /* BRILLO */
 .brillo{
   position:fixed;
-  width:8px;
-  height:8px;
+  width:6px;
+  height:6px;
   background:white;
   border-radius:50%;
-  box-shadow:0 0 15px white,0 0 30px white;
-  pointer-events:none;
-  animation:brillar 3s linear forwards;
+  box-shadow:0 0 10px white;
+  animation:brillar 3s linear infinite;
 }
 
 @keyframes brillar{
-  0%{
-    opacity:0;
-    transform:scale(0);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1);
-  }
-  100%{
-    opacity:0;
-    transform:scale(0);
-  }
+  0%{opacity:0; transform:scale(0);}
+  50%{opacity:1; transform:scale(1);}
+  100%{opacity:0; transform:scale(0);}
 }
 
-.explosion{
-  position:fixed;
-  font-size:24px;
-  pointer-events:none;
-  z-index:5;
-  animation:boom 1.5s ease-out forwards;
+@keyframes fall{
+  0%{transform:translateY(-20px);}
+  100%{transform:translateY(110vh);}
 }
-
-
 </style>
 </head>
 
@@ -192,10 +175,9 @@ let mensaje="Quería decirte que eres una persona muy especial para mí. Tu amis
 let i=0;
 
 function abrir(){
-  document.getElementById("container").classList.add("open");
-  document.getElementById("music").play();
-  explosion();
-  escribir();
+document.getElementById("container").classList.add("open");
+document.getElementById("music").play();
+escribir();
 }
 
 function escribir(){
@@ -220,78 +202,32 @@ setInterval(heart,400);
 
 /* FLORES */
 function flor(){
-  const f=document.createElement("div");
-  f.className="flor";
-  f.innerHTML="🌸";
+const f=document.createElement("div");
+f.classList.add("flor");
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+document.body.appendChild(f);
 
-  f.style.left=Math.random()*100+"vw";
-
-  document.body.appendChild(f);
-
-  setTimeout(function(){
-    f.remove();
-  },6000);
+setTimeout(()=>{f.remove();},6000);
 }
-setInterval(flor,800);
+setInterval(flor,700);
 
-/* explocion */
-function explosion(){
-
-  const rect=document.querySelector(".container").getBoundingClientRect();
-
-  for(let i=0;i<25;i++){
-
-    const c=document.createElement("div");
-    c.className="explosion";
-    c.innerHTML="💖";
-
-    const x=(Math.random()-0.5)*400+"px";
-    const y=(Math.random()-0.5)*400+"px";
-
-    c.style.setProperty("--x",x);
-    c.style.setProperty("--y",y);
-
-    c.style.left=rect.left + rect.width/2 + "px";
-    c.style.top=rect.top + rect.height/2 + "px";
-
-    document.body.appendChild(c);
-
-    setTimeout(()=>{
-      c.remove();
-    },1500);
-
-  }
-
-}
-  
 /* BRILLO */
 function brillo(){
+const b=document.createElement("div");
+b.classList.add("brillo");
+b.style.left=Math.random()*100+"vw";
+b.style.top=Math.random()*100+"vh";
+document.body.appendChild(b);
 
-  const b=document.createElement("div");
-  b.className="brillo";
-
-  b.style.left=Math.random()*100+"vw";
-  b.style.top=Math.random()*100+"vh";
-
-  document.body.appendChild(b);
-
-  setTimeout(()=>{
-    b.remove();
-  },3000);
-
+setTimeout(()=>{b.remove();},3000);
 }
-  
-
 setInterval(brillo,200);
-setInterval(heart,400);
-setInterval(flor,700);
+
 </script>
 
 </body>
 </html>
-
-
-
 
 
 
