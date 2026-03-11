@@ -113,16 +113,17 @@ body{
   position:fixed;
   top:-20px;
   font-size:22px;
+  z-index:10;
   animation:fall 6s linear infinite;
 }
 
 /* FLORES */
 .flor{
   position:fixed;
-  top:-50px;
-  font-size:24px;
-  pointer-events:none;
-  animation:fall 6s linear forwards;
+  top:-20px;
+  font-size:22px;
+  z-index:10;
+  animation:fall 7s linear infinite;
 }
 
 /* BRILLO */
@@ -156,19 +157,8 @@ body{
   position:fixed;
   font-size:24px;
   pointer-events:none;
+  z-index:5;
   animation:boom 1.5s ease-out forwards;
-}
-
-@keyframes boom{
-  0%{
-    transform:translate(0,0) scale(0);
-    opacity:1;
-  }
-
-  100%{
-    transform:translate(var(--x),var(--y)) scale(1.5);
-    opacity:0;
-  }
 }
 
 
@@ -299,6 +289,7 @@ setInterval(flor,700);
 
 </body>
 </html>
+
 
 
 
