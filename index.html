@@ -247,6 +247,8 @@ setInterval(flor,800);
 /* explocion */
 function explosion(){
 
+  const rect=document.querySelector(".container").getBoundingClientRect();
+
   for(let i=0;i<25;i++){
 
     const c=document.createElement("div");
@@ -259,8 +261,8 @@ function explosion(){
     c.style.setProperty("--x",x);
     c.style.setProperty("--y",y);
 
-    c.style.left="50%";
-    c.style.top="50%";
+    c.style.left=rect.left + rect.width/2 + "px";
+    c.style.top=rect.top + rect.height/2 + "px";
 
     document.body.appendChild(c);
 
@@ -295,6 +297,7 @@ setInterval(brillo,200);
 
 </body>
 </html>
+
 
 
 
