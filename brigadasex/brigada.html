@@ -1,1 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Brigada Sex | Comunidad +18</title>
+  <!-- Fuentes e íconos modernos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- SwiperJS CDN para carrusel moderno -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background: linear-gradient(145deg, #0b0a0e 0%, #1a1722 100%);
+      font-family: 'Inter', sans-serif;
+      color: #f0eef7;
+      scroll-behavior: smooth;
+    }
+
+    /* contenedor principal */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* cabecera con logo + título + mensaje */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      border-radius: 3rem;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(255, 75, 130, 0.3);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo-area {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* estilo para el logo (imagen o emblema de respaldo) */
+    .logo-circle {
+      background: linear-gradient(135deg, #ff4b82, #ff9f4a);
+      width: 100px;
+      height: 100px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(255, 75, 130, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .logo-circle:hover {
+      transform: scale(1.02);
+    }
+    .logo-circle i {
+      font-size: 4.2rem;
+      color: white;
+      filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.3));
+    }
+    /* si usas imagen real, se adapta */
+    .logo-img {
+      max-width: 100px;
+      max-height: 100px;
+      border-radius: 30px;
+      object-fit: cover;
+    }
+
+    .group-name {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #FFE6F0, #FFB3C6, #FF8BA7);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      margin: 0.5rem 0 0.75rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #d9ccec;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.4;
+      background: rgba(20, 15, 35, 0.6);
+      padding: 0.8rem 1.5rem;
+      border-radius: 60px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+    }
+
+    /* tarjeta del contador */
+    .counter-card {
+      background: rgba(20, 18, 30, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0 3rem;
+      border: 1px solid rgba(255, 105, 150, 0.5);
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .counter-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #ffbfd5;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .counter-digits {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .time-unit {
+      background: #0a0812;
+      border-radius: 1.5rem;
+      padding: 0.8rem 1.2rem;
+      min-width: 100px;
+      box-shadow: 0 8px 0 #2a1e2c;
+    }
+
+    .time-number {
+      font-size: 3.2rem;
+      font-weight: 800;
+      font-family: monospace;
+      background: linear-gradient(145deg, #fff, #ffb7cc);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+
+    .unit-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #b9a9da;
+    }
+
+    /* carrusel */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1.2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 6px solid #ff4b82;
+      padding-left: 20px;
+    }
+
+    .swiper {
+      width: 100%;
+      padding: 20px 0 40px;
+      border-radius: 2rem;
+    }
+
+    .swiper-slide {
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      border-radius: 1.8rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 12px 25px -12px black;
+    }
+
+    .swiper-slide img, .swiper-slide video {
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      object-fit: contain;
+      background: #0e0b16;
+      display: block;
+    }
+
+    .media-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, #000000cc, transparent);
+      padding: 1rem 0.8rem 0.5rem;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #fff2f5;
+      font-weight: 500;
+      pointer-events: none;
+    }
+
+    /* mensaje descriptivo brigada sex */
+    .info-message {
+      background: #1f1b2bdd;
+      border-radius: 2rem;
+      padding: 2rem;
+      margin: 2rem 0 1rem;
+      border-left: 5px solid #ff6a92;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .brigada-name {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #FFB347, #FF6B8B);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #3f3753;
+      font-size: 0.8rem;
+      color: #b3a7d0;
+    }
+
+    @media (max-width: 680px) {
+      .container { padding: 1.2rem; }
+      .group-name { font-size: 2rem; }
+      .time-number { font-size: 2rem; }
+      .time-unit { min-width: 70px; padding: 0.5rem 0.8rem; }
+      .counter-digits { gap: 0.6rem; }
+    }
+
+    /* botón para recargar contador en tiempo real (opcional) */
+    .refresh-hint {
+      font-size: 0.7rem;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- HERO con logo, nombre del grupo y mensaje -->
+  <div class="hero">
+    <div class="logo-area" id="logoContainer">
+      <!-- Aquí se puede mostrar el logo subido o el por defecto. Se puede cambiar por imagen real -->
+      <div class="logo-circle" id="logoDisplay">
+        <i class="fas fa-users"></i>
+      </div>
+      <!-- Si deseas subir un logo personalizado, agregamos un input oculto? Lo haremos interactivo: permitir subir logo -->
+    </div>
+    <h1 class="group-name">BRIGADA SEX</h1>
+    <div class="tagline">
+      <i class="fas fa-crown" style="margin-right: 8px;"></i> Poder, Placer y Revolución del Deseo
+    </div>
+  </div>
+
+  <!-- CONTADOR desde creación comunidad (fecha simbólica) -->
+  <div class="counter-card">
+    <div class="counter-title">
+      <i class="fas fa-hourglass-half"></i> 
+      <span>COMUNIDAD ACTIVA DESDE</span>
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+    <div class="counter-digits" id="contadorReloj">
+      <!-- JS llena dinámicamente -->
+      <div class="time-unit"><span class="time-number" id="days">0</span><div class="unit-label">DÍAS</div></div>
+      <div class="time-unit"><span class="time-number" id="hours">0</span><div class="unit-label">HORAS</div></div>
+      <div class="time-unit"><span class="time-number" id="minutes">0</span><div class="unit-label">MINUTOS</div></div>
+      <div class="time-unit"><span class="time-number" id="seconds">0</span><div class="unit-label">SEGUNDOS</div></div>
+    </div>
+    <div class="refresh-hint">
+      <i class="fas fa-heart" style="color:#ff6b8b;"></i> Desde el inicio de la Brigada
+    </div>
+  </div>
+
+  <!-- CARRUSEL DE FOTOS Y VIDEOS (con Swiper) -->
+  <div class="section-title">
+    <i class="fas fa-images"></i> GALERÍA BRIGADA
+    <span style="font-size: 0.9rem; background: #ff4b8233; padding: 4px 12px; border-radius: 30px;">🔥 contenido carrusel</span>
+  </div>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper" id="swiper-wrapper">
+      <!-- Items se cargarán dinámicamente desde array de medios -->
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <!-- mensaje explicativo: que es brigada sex -->
+  <div class="info-message">
+    <span class="brigada-name">💋 BRIGADA SEX 💋</span><br>
+    Colectivo艺术+activismo, espacio seguro de exploración sensual, liberación corporal y arte digital. 
+    Nacimos para romper tabúes, empoderar deseos y construir comunidad sin prejuicios. 
+    Aquí compartimos miradas, performances y material exclusivo de nuestras experiencias. 
+    <strong>#SomosBrigadaSex</strong> — placer, arte y revolución.
+  </div>
+  <footer>
+    <i class="fas fa-copyright"></i> Brigada Sex · Comunidad libre y vibrante · +18
+  </footer>
+</div>
+
+<!-- swiper JS + librerías -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // --------------------------------------------------------------
+  // 1. FECHA DE CREACIÓN DE LA COMUNIDAD "BRIGADA SEX"
+  //    Usaré 20 de febrero de 2023 a las 20:00 (una fecha emblemática)
+  //    Puedes cambiarla a la real. 
+  const CREATION_DATE = new Date(2023, 1, 20, 20, 0, 0); // año, mes(0=ene), día, hora, min, seg (febrero 20 2023)
+
+  // Función actualizar contador en tiempo real
+  function updateCounter() {
+    const now = new Date();
+    const diffMs = now - CREATION_DATE;
+    if (diffMs <= 0) {
+      // si por alguna razón la fecha es futura, mostramos 0
+      document.getElementById('days').innerText = '0';
+      document.getElementById('hours').innerText = '0';
+      document.getElementById('minutes').innerText = '0';
+      document.getElementById('seconds').innerText = '0';
+      return;
+    }
+    const totalSeconds = Math.floor(diffMs / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    
+    document.getElementById('days').innerText = days;
+    document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+    document.getElementById('minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+    document.getElementById('seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+  }
+  // actualizar cada segundo
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  // --------------------------------------------------------------
+  // 2. CARRUSEL: LISTA DE ARCHIVOS MULTIMEDIA (fotos y videos)
+  //    Puedes añadir más rutas, reemplazar por URLs reales.
+  //    Incluye ejemplos de imágenes placeholder y videos de muestra.
+  //    Para demostración, subo recursos libres y también puedes agregar URLs locales.
+  //    Como es puro front, todo se muestra desde URLs externas o assets gratuitos.
+  //    Para fotos/videos reales, el usuario los puede sustituir fácilmente.
+  
+  const mediaItems = [
+    { type: 'image', url: 'https://picsum.photos/id/20/800/600', title: '🔥 Sesión Brigada - Energía colectiva' },
+    { type: 'image', url: 'https://picsum.photos/id/169/800/600', title: '🎭 Performance visual' },
+    { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4', title: '📹 Manifiesto Brigada Sex (clip)' },  // video ejemplo open source
+    { type: 'image', url: 'https://picsum.photos/id/175/800/600', title: '✨ Encuentro nocturno' },
+    { type: 'image', url: 'https://picsum.photos/id/29/800/600', title: '💃 Deseo y movimiento' },
+    { type: 'video', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', title: '🎬 After Brigada - coreografía' },
+    { type: 'image', url: 'https://picsum.photos/id/104/800/600', title: '🌸 Arte y piel' },
+    { type: 'image', url: 'https://picsum.photos/id/30/800/600', title: '🌙 Velada secreta' }
+  ];
+  
+  // Función para generar el HTML de cada slide
+  const swiperWrapper = document.getElementById('swiper-wrapper');
+  if (swiperWrapper) {
+    mediaItems.forEach(item => {
+      const slideDiv = document.createElement('div');
+      slideDiv.className = 'swiper-slide';
+      let mediaHtml = '';
+      if (item.type === 'image') {
+        mediaHtml = `<img src="${item.url}" alt="${item.title}" loading="lazy">`;
+      } else {
+        // para videos: controls, loop opcional, preload metadata
+        mediaHtml = `<video controls preload="metadata" playsinline><source src="${item.url}" type="video/mp4">Tu navegador no soporta video.</video>`;
+      }
+      // agregar caption o pie
+      mediaHtml += `<div class="media-caption">${item.title}</div>`;
+      slideDiv.innerHTML = mediaHtml;
+      swiperWrapper.appendChild(slideDiv);
+    });
+  }
+  
+  // Inicializar Swiper después de llenar slides
+  let swiperInstance = null;
+  function initSwiper() {
+    if (swiperInstance) swiperInstance.destroy(true, true);
+    swiperInstance = new Swiper('.mySwiper', {
+      loop: true,
+      spaceBetween: 20,
+      slidesPerView: 1,
+      centeredSlides: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1.2,
+          spaceBetween: 15,
+        },
+        1024: {
+          slidesPerView: 1.5,
+          spaceBetween: 20,
+        }
+      },
+      effect: 'slide',
+      grabCursor: true,
+    });
+  }
+  // esperar un tick para asegurar que el wrapper tiene hijos
+  setTimeout(() => {
+    initSwiper();
+  }, 100);
+  
+  // --------------------------------------------------------------
+  // 3. LOGO: El usuario puede "subir su logo". Mejoramos experiencia: botón oculto o permitir selección
+  //    He diseñado un area donde se puede hacer clic para elegir archivo de imagen y reemplazar el logo por defecto.
+  //    Mostraremos un pequeño botón "Cambiar logo" para que suba su propio diseño.
+  
+  const logoContainer = document.getElementById('logoContainer');
+  // crear input file oculto
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'image/*';
+  fileInput.style.display = 'none';
+  document.body.appendChild(fileInput);
+  
+  // Botón elegante para subir logo (lo añadimos debajo del logo, pequeño)
+  const uploadBtn = document.createElement('button');
+  uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Subir mi logo';
+  uploadBtn.style.background = '#2a2438';
+  uploadBtn.style.border = '1px solid #ff8ba7';
+  uploadBtn.style.color = '#ffd9e5';
+  uploadBtn.style.padding = '6px 14px';
+  uploadBtn.style.borderRadius = '40px';
+  uploadBtn.style.fontSize = '0.7rem';
+  uploadBtn.style.marginTop = '12px';
+  uploadBtn.style.cursor = 'pointer';
+  uploadBtn.style.fontWeight = '600';
+  uploadBtn.style.transition = '0.2s';
+  uploadBtn.onmouseover = () => { uploadBtn.style.background = '#3d3162'; };
+  uploadBtn.onmouseout = () => { uploadBtn.style.background = '#2a2438'; };
+  
+  // insertar después del logo-area
+  logoContainer.parentNode.insertBefore(uploadBtn, logoContainer.nextSibling);
+  
+  // función para actualizar logo (ya sea por defecto de imagen o por fuente)
+  function setLogoFromImage(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      // reemplazar contenido del logo-circle por una imagen
+      const oldDiv = document.getElementById('logoDisplay');
+      if (oldDiv) {
+        // crear elemento imagen
+        const imgElement = document.createElement('img');
+        imgElement.src = e.target.result;
+        imgElement.alt = "Logo Brigada Sex";
+        imgElement.classList.add('logo-img');
+        // limpiar y agregar la imagen
+        oldDiv.innerHTML = '';
+        oldDiv.style.background = 'transparent';
+        oldDiv.style.boxShadow = 'none';
+        oldDiv.appendChild(imgElement);
+        // ajustar estilos del contenedor
+        oldDiv.style.borderRadius = '30px';
+        oldDiv.style.padding = '0';
+        oldDiv.style.overflow = 'hidden';
+      }
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+  
+  fileInput.addEventListener('change', (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      setLogoFromImage(file);
+    }
+  });
+  
+  uploadBtn.addEventListener('click', () => {
+    fileInput.click();
+  });
+  
+  // También permitir arrastrar o si ya tiene un logo propio, pero adicional puede usar el ícono por defecto.
+  // Si se quiere resetear se puede hacer con doble clic? no es necesario, pero añadimos botón implícito.
+  // añadir opción de reset a logo ícono
+  const resetLogoBtn = document.createElement('button');
+  resetLogoBtn.innerHTML = '<i class="fas fa-undo-alt"></i> Restaurar icono';
+  resetLogoBtn.style.background = '#1f1b2b';
+  resetLogoBtn.style.border = '1px solid #a56c88';
+  resetLogoBtn.style.color = '#cfc1e8';
+  resetLogoBtn.style.padding = '4px 12px';
+  resetLogoBtn.style.borderRadius = '40px';
+  resetLogoBtn.style.fontSize = '0.7rem';
+  resetLogoBtn.style.marginLeft = '10px';
+  resetLogoBtn.style.cursor = 'pointer';
+  resetLogoBtn.style.fontWeight = '500';
+  uploadBtn.parentNode.insertBefore(resetLogoBtn, uploadBtn.nextSibling);
+  
+  resetLogoBtn.addEventListener('click', () => {
+    const logoDiv = document.getElementById('logoDisplay');
+    if (logoDiv) {
+      logoDiv.innerHTML = '<i class="fas fa-users"></i>';
+      logoDiv.style.background = 'linear-gradient(135deg, #ff4b82, #ff9f4a)';
+      logoDiv.style.boxShadow = '0 10px 25px rgba(255, 75, 130, 0.4)';
+      logoDiv.style.borderRadius = '30px';
+      logoDiv.style.padding = '0';
+      logoDiv.style.display = 'flex';
+      logoDiv.style.alignItems = 'center';
+      logoDiv.style.justifyContent = 'center';
+      const icon = logoDiv.querySelector('i');
+      if(icon) icon.style.fontSize = '4.2rem';
+    }
+  });
+  
+  // --------------------------------------------------------------
+  // 4. Sección nombre y mensaje ya está en HTML, dinámico.
+  // Opcional: si alguna imagen no carga, no rompe carrusel. Hecho.
+  
+  // Pequeño fix: Si el swiper se inicializa antes de que se terminen de añadir slides (por si alguna race condition),
+  // llamamos de nuevo a inicialización luego de cargar completamente.
+  window.addEventListener('load', () => {
+    updateCounter();
+    if(swiperInstance) swiperInstance.update();
+    // forzar actualización de slides visibles
+    setTimeout(() => {
+      if(swiperInstance) swiperInstance.update();
+    }, 200);
+  });
+  
+  // Manejo de videos que se detienen al cambiar slide (mejora experiencia)
+  if (swiperInstance) {
+    swiperInstance.on('slideChange', function () {
+      // pausar todos los videos que estén reproduciéndose dentro del swiper
+      const allVideos = document.querySelectorAll('.swiper-slide video');
+      allVideos.forEach(video => {
+        if(video && !video.paused) video.pause();
+      });
+    });
+  } else {
+    // en caso de que swiperInstance aún no exista, lo configuramos dentro del load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.swiperInstance) return;
+      const SwiperObj = window.Swiper;
+      if(SwiperObj) {
+        const newSwiper = new SwiperObj('.mySwiper', {
+          loop: true, spaceBetween: 20, slidesPerView: 1, pagination: { el: '.swiper-pagination', clickable: true },
+          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, autoplay: { delay: 4000 }
+        });
+        newSwiper.on('slideChange', () => {
+          document.querySelectorAll('.swiper-slide video').forEach(v => v.pause());
+        });
+        window.swiperInstance = newSwiper;
+      }
+    });
+  }
+  
+  // Por último, si los breakpoints del swiper no ajustan, aseguramos
+  console.log("Página Brigada Sex lista — carrusel, contador, logo personalizable ❤️‍🔥");
+</script>
+</body>
+</html>
